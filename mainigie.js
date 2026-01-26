@@ -30,7 +30,44 @@ let obj1 = {
 document.body.innerHTML += arr1[1];
 document.body.innerHTML += obj1.price;
 
-obj1.sayHello();
+// obj1.sayHello();
+
+
+
+// Matematiskie operatori
+
+// + - / * % () ^ < > <= >= == === <== >==
+// = += -= *= /=  %/ 
+
+let summa  = 1.45*4*20/5;
+ summa += 100;
+
+//  alert(summa);
+
+ //document.body.innerHTML = (3>1);
+ document.body.innerHTML = summa.toFixed(2);
+ document.body.innerHTML = typeof(summa.toString());
+
+//  Stingri tipizēts JS = TypeScript
+
+// skaitļu ģenerātors no 0-255
+
+let generate1 = Math.random()*255;
+//document.body.innerHTML = generate1.toFixed();
+document.body.innerHTML = Math.trunc(generate1);
+
+
+// RGB
+
+let background = {
+    red: (Math.random()*255).toFixed(),
+    green: (Math.random()*255).toFixed(),
+    blue: (Math.random()*255).toFixed(),
+
+}
+document.body.style.background = `rgb(${background.red},${background.green},${background.blue})`;
+
+
 
 
 
