@@ -57,15 +57,24 @@ let generate1 = Math.random()*255;
 document.body.innerHTML = Math.trunc(generate1);
 
 
-// RGB
 
-let background = {
+
+
+setInterval(()=>{
+
+
+    // RGB
+    let background = {
     red: (Math.random()*255).toFixed(),
     green: (Math.random()*255).toFixed(),
     blue: (Math.random()*255).toFixed(),
 
 }
-document.body.style.background = `rgb(${background.red},${background.green},${background.blue})`;
+    document.body.style.background = `rgb(${background.red},${background.green},${background.blue})`;  
+    
+    
+},1000)
+
 
 
 
