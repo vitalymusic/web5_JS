@@ -53,5 +53,14 @@ input1.oninput = (e)=>{
     document.title = e.target.value;
 }
 
+const img1 = document.querySelector('img');
+
+img1.src = "attels1.jpg";
+img1.alt = "Kautkāds attēls";
+img1.classList.add('attels','img-fluid');
+resultDiv.classList.remove('result');
+
+img1.remove();
+
 
 

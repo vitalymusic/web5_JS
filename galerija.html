@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerija</title>
+</head>
+<body>
+    <div class="gallery_thumbnails">
+       <!-- mazie attēli -->
+    </div>
+    <div class="bigImage">
+        <img src="" alt="">
+    </div>
+
+    <script>
+        const images = [
+            "https://picsum.photos/id/123/800",
+            "https://picsum.photos/id/124/800",
+            "https://picsum.photos/id/125/800",
+            "https://picsum.photos/id/126/800"
+        ];
+
+        const galleryDiv = document.querySelector('.gallery_thumbnails');
+
+        const bigImage = document.querySelector('.bigImage img');
+
+
+        for (image of images){
+            galleryDiv.innerHTML+=`
+                <img src="${image}" alt="attels" style="width:200px" >
+            `;
+        }
+
+        const imagesElements = document.querySelectorAll('.gallery_thumbnails img');
+
+        // console.log(imagesElements);
+
+        for(elem of imagesElements){
+             elem.onmouseover = (e)=>{
+                    console.log(e);
+             }   
+
+        }
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
