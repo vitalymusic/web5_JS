@@ -22,9 +22,7 @@
         ];
 
         const galleryDiv = document.querySelector('.gallery_thumbnails');
-
         const bigImage = document.querySelector('.bigImage img');
-
 
         for (image of images){
             galleryDiv.innerHTML+=`
@@ -38,7 +36,8 @@
 
         for(elem of imagesElements){
              elem.onmouseover = (e)=>{
-                    console.log(e);
+                    // console.log(e);
+                   bigImage.src =  e.target.src
              }   
 
         }
