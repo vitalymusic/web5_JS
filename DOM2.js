@@ -89,3 +89,43 @@ let users = [
         phone: "+37123344556"
     }
 ];
+
+
+let tabula = document.createElement('table');
+
+arr1 = fetch('./users.json')
+.then((json)=>{return json.json()})
+.then((data)=>{
+    createTable(data.users);
+});
+
+
+function createTable(data){
+   data.forEach((item,i)=>{
+    let rinda = document.createElement('tr');   
+    
+    
+    for( key in item){
+        let shuna = document.createElement('td');
+        shuna.innerText = item[key];
+        rinda.appendChild(shuna);
+    }
+
+    // rinda.innerHTML = `
+
+    //     <td>${i+1}.</td>
+    //     <td>${item.name}</td>
+    //     <td>${item.surname}</td>
+    //     <td>${item.email}</td>
+    //     <td>${item.phone}</td>
+    // `;
+    tabula.appendChild(rinda);
+
+})
+document.body.appendChild(tabula);
+
+}
+
+
+
+
