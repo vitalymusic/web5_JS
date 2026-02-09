@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Formas validācija</h1>
+    <form action="">
+        <input type="text" name="username" id="" placeholder="Vārds">
+        <input type="email" name="email" id="" placeholder="epasts">
+        <input type="password" name="password" id="" placeholder="Parole">
+        <input type="password" name="password-repeat" id="" placeholder="Parole">
+
+        <button type="submit">Reģistrēties</button>
+
+    </form>
+
+
+    <script>
+        // formas validācija
+
+        let formElem = document.querySelector('form');
+        const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
+        const passregex =  /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/gm;
+       
+        // formas validācija var būt arī caur šādu objektu
+        const formValidation = [
+            {
+                validation:match(),
+                error:"",
+
+            },
+            {
+
+            },
+            {
+
+            }
+        ]
+          
+        formElem.onsubmit = (e)=>{
+             if(document.querySelector('.error')){
+            document.querySelector('div.error').remove();
+            }
+
+
+            let errors = [];
+
+            e.preventDefault();
+            let inputs = document.querySelectorAll('input');
+
+            if(inputs[0].value.length<3){
+                errors.push("Šajā laukā vajadzētu būt vismaz 3 simboliem");
+                inputs[0].classList.add('error');
+            }
+            if(!inputs[1].value.match(emailRegex)){
+                errors.push("Epasts ir ievadīts nepareizi");
+                 inputs[1].classList.add('error');
+
+            }
+            if(!inputs[2].value.match(passregex)){
+                errors.push("Parolei jāsastāv no ....");
+                 inputs[2].classList.add('error');
+
+            }
+             if(inputs[3].value  !== inputs[2].value){
+                errors.push("Paroles nesakrīt");
+                 inputs[3].classList.add('error');
+            }
+
+
+            if(errors.length >0){
+                formElem.insertAdjacentHTML('beforeend',`<div class="error"></div>`);
+
+                errors.forEach((item)=>{
+                    formElem.querySelector('div.error').innerHTML+=`<p>${item}</p>`;
+                })
+                
+
+            }
+
+        }
+
+
+
+    </script>
+</body>
+</html>
