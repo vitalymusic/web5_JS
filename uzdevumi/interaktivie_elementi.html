@@ -7,6 +7,11 @@
     <title>Document</title>
 
     <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
         nav {
             background: blue;
             padding: 10px;
@@ -31,18 +36,27 @@
 
 
         .subnav{
-            box-sizing: border-box;
             position: absolute;
-            top:50px;
+            top:40px;
+           
             z-index: 10;
             background-color: aqua;
-            width: 100%;
+            /* width: 100%; */
             padding: 20px;
+            flex-direction: column;
+            gap:20px;
             display: none;
             a{
                 color:black
             }
             
+        }
+
+        #subnav1{
+             left:calc(50% - 100px);
+        }
+        #subnav2{
+             left:calc(50% - 50px);
         }
 
 
@@ -127,6 +141,8 @@
                 subnav.classList.remove('items_shown');
             }
         }
+
+        
 
     </script>
 </body>
