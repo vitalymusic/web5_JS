@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        nav {
+            background: blue;
+            padding: 10px;
+
+            .nav-items {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+
+
+            a {
+                color: white;
+                text-decoration: none;
+            }
+
+            button {
+                display: none;
+            }
+
+        }
+
+
+        .subnav{
+            box-sizing: border-box;
+            position: absolute;
+            top:50px;
+            z-index: 10;
+            background-color: aqua;
+            width: 100%;
+            padding: 20px;
+            display: none;
+            a{
+                color:black
+            }
+            
+        }
+
+
+
+
+
+
+
+
+        @media screen and (max-width:768px) {
+            nav {
+                .nav-items {
+                    flex-direction: column;
+                    display: none; 
+
+
+                    a {
+                        text-align: center;
+                    }
+
+                }
+
+                button {
+                    display: block;
+                }
+            }
+
+
+        }
+
+        .items_shown {
+            display: flex !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1. Mobīlā navigācija -->
+    <nav>
+        <button>Menu</button>
+        <div class="nav-items">
+            <a href="">Galvenā</a>
+                <div class="subnav" id="subnav1">
+                    <a href="">Viens</a>
+                    <a href="">Divi</a>
+                    <a href="">Trīs</a>
+                </div>
+            <a href="">Par mums</a>
+            <div class="subnav" id="subnav2">
+                    <a href="">Četri</a>
+                    <a href="">Pieci</a>
+                    <a href="">seši</a>
+            </div>
+            <a href="">Kontakti</a>
+        </div>
+
+    </nav>
+
+    <script>
+        document.querySelector('button').onclick = () => {
+            document.querySelector('.nav-items').classList.toggle('items_shown')
+        }
+
+
+        let links = document.querySelectorAll('.nav-items>a');
+
+        console.log(links);
+
+        links[0].onclick = (e)=>{
+            e.preventDefault();
+            hideAllSubnavs();
+            document.querySelector('#subnav1').classList.toggle('items_shown')
+        }
+        links[1].onclick = (e)=>{
+            e.preventDefault();
+            hideAllSubnavs();
+            document.querySelector('#subnav2').classList.toggle('items_shown')
+        }
+
+        function hideAllSubnavs(){
+            for(subnav of document.querySelectorAll('.subnav')){
+                subnav.classList.remove('items_shown');
+            }
+        }
+
+    </script>
+</body>
+
+</html>
