@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="clickBtn">Klikšķini mani</button>
+    <p id="count">0</p>
+
+    <script>
+        let btn = document.querySelector('#clickBtn');
+        let countPar = document.querySelector('#count');
+
+        let count = 0;
+
+        btn.onclick = ()=>{
+            count++;
+            countPar.innerText = count;
+
+            
+
+            if(count==5){
+               countPar.style.color="green"; 
+            }
+            if(count==10){
+               countPar.style.color="orange"; 
+            }
+            if(count==15){
+               countPar.style.color="red"; 
+            }
+            if(count==20){
+               btn.disabled = "true"; 
+            }
+            
+        }
+
+
+
+    </script>
+</body>
+</html>

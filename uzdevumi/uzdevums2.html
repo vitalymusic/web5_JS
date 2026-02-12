@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button>Pievienot</button>
+
+    <ul>
+
+    </ul>
+
+    <script>
+        let input = document.querySelector('input');
+        let button = document.querySelector('button');
+        let ulElem = document.querySelector('ul');
+
+        button.addEventListener("click", () => {
+            if (input.value.length > 0) {
+
+
+                let listElem = document.createElement('li');
+                listElem.innerHTML = `
+                <span>${input.value}</span>
+                <button class="delTask">X</button>
+                `;
+                ulElem.appendChild(listElem);
+                input.value = "";
+                let listElems = document.querySelectorAll('.delTask');
+
+                for(item of listElems){
+                    item.onclick = (e)=>{
+                           e.target.parentElement.remove();
+                    }
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
