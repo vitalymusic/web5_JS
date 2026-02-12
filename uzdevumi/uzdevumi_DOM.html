@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 id="title">Sveika pasaule</h2>
+    <button id="btn">Mainīt tekstu</button>
+
+
+    <script>
+        let title = document.querySelector('h2');
+        let button = document.querySelector('#btn');
+        let text = title.innerText;
+        let buttonPressed = false;
+
+        function formatText() {
+           
+            title.innerText = "Teksts nomainīts!";
+            title.style.color = "red";
+            title.style.fontSize = "32px";
+        }
+
+        function resetText(){
+             title.innerText = text;
+             title.removeAttribute("style");
+        }
+
+        button.addEventListener("click", () => {
+                buttonPressed = !buttonPressed;
+
+                if(buttonPressed){
+                    formatText() 
+                }else{
+                   resetText()     
+                }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
