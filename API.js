@@ -79,16 +79,16 @@ loadPostBtn.onclick = () => {
 
 
         })
-        then(()=>{
+        .then(()=>{
             for( button of document.querySelectorAll('.editPostBtn')){
                 button.onclick = (e)=>{
-                    postId = e.target.dataset.postid;
+                    id = e.target.dataset.postid;
                      fetch('https://dummyjson.com/posts/' + id)
                     .then((json)=>{return json.json()})
                     .then((data)=>{
                         form.querySelector('input[type="text"]').value = data.title;
                         form.querySelector('textarea').value = data.body;
-                        
+
                     })
                     .then(()=>{
                         addPostDialog.showModal();
