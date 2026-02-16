@@ -6,6 +6,30 @@ let postsDiv = document.querySelector('.posts');
 let postDialog = document.querySelector('#postDialog');
 let closedialogBtn = document.querySelector('.closeDialogBtn');
 
+let addPostDialog = document.querySelector('#addPostDialog');
+
+let openCreatePostBtn = document.querySelector('.openCreatePostBtn');
+let savePostBtn = document.querySelector('.savePostBtn');
+
+
+savePostBtn.onclick = ()=>{
+    let form = addPostDialog.querySelector('form');
+    fetch('https://dummyjson.com/posts/add',{
+        method: 'POST',
+        body:new FormData(form)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+
+
+}
+
+
+openCreatePostBtn.onclick = ()=>{
+    addPostDialog.showModal();
+}
+
+
 closedialogBtn = onclick = ()=>{
     postDialog.close();
 }
@@ -20,7 +44,7 @@ loadPostBtn.onclick = () => {
                     <div class="post">
                         <h3>${item.title}</h3>
                         <p>${item.body}</p>
-                        
+
                         <button class="openPostBtn" data-postid="${item.id}">Lasīt vairāk</button>
                     </div>
                `;
