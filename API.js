@@ -10,10 +10,10 @@ let addPostDialog = document.querySelector('#addPostDialog');
 
 let openCreatePostBtn = document.querySelector('.openCreatePostBtn');
 let savePostBtn = document.querySelector('.savePostBtn');
-
+ let form = addPostDialog.querySelector('form');
 
 savePostBtn.onclick = ()=>{
-    let form = addPostDialog.querySelector('form');
+   
     fetch('https://dummyjson.com/posts/add',{
         method: 'POST',
          headers: {
@@ -56,6 +56,7 @@ loadPostBtn.onclick = () => {
                         <p>${item.body}</p>
 
                         <button class="openPostBtn" data-postid="${item.id}">Lasīt vairāk</button>
+                        <button class="editPostBtn" data-postid="${item.id}">Rediģēt</button>
                     </div>
                `;
             })
@@ -77,6 +78,23 @@ loadPostBtn.onclick = () => {
             }
 
 
+        })
+        then(()=>{
+            for( button of document.querySelectorAll('.editPostBtn')){
+                button.onclick = (e)=>{
+                    postId = e.target.dataset.postid;
+                     fetch('https://dummyjson.com/posts/' + id)
+                    .then((json)=>{return json.json()})
+                    .then((data)=>{
+                        form.querySelector('input[type="text"]').value = data.title;
+                        form.querySelector('textarea').value = data.body;
+                        
+                    })
+                    .then(()=>{
+                        addPostDialog.showModal();
+                    })
+                }
+            }
         })
         .finally(() => {
             console.log("Dati ielādēti!!!");
