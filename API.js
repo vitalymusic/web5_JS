@@ -15,6 +15,7 @@ loadPostBtn.onclick = ()=>{
                     <div class="post">
                         <h3>${item.title}</h3>
                         <p>${item.body}</p>
+                        <button class="openPostBtn" data-postId="${item.id}">Lasīt vairāk</button>
                     </div>
                `; 
             })
