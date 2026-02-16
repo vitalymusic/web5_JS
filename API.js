@@ -21,6 +21,13 @@ loadPostBtn.onclick = ()=>{
             })
             postsDiv.innerHTML = html;
         })
+        .then(()=>{
+            document.querySelectorAll('.openPostBtn').onclick = (e)=>{
+                let id = e.target.dataset.postId;
+                 fetch('https://dummyjson.com/posts/'+id)    
+
+            }
+        })
         .finally(()=>{
             console.log("Dati ielādēti!!!");
         })
