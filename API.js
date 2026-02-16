@@ -16,10 +16,20 @@ savePostBtn.onclick = ()=>{
     let form = addPostDialog.querySelector('form');
     fetch('https://dummyjson.com/posts/add',{
         method: 'POST',
-        body:new FormData(form)
+         headers: {
+        "Content-Type": "application/json"
+    },
+        body:JSON.stringify({
+            title: form.querySelector('input[type="text"]').value,
+            body:form.querySelector('textarea').value,
+            userId: 5
+        })
     })
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => {
+        form.reset();
+        addPostDialog.close();
+    });
 
 
 }
