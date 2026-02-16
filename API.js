@@ -3,7 +3,12 @@
 
 let loadPostBtn = document.querySelector('.loadPostBtn');
 let postsDiv = document.querySelector('.posts');
+let postDialog = document.querySelector('#postDialog');
+let closedialogBtn = document.querySelector('.closeDialogBtn');
 
+closedialogBtn = onclick = ()=>{
+    postDialog.close();
+}
 
 loadPostBtn.onclick = () => {
     fetch('https://dummyjson.com/posts')
@@ -28,9 +33,10 @@ loadPostBtn.onclick = () => {
                     fetch('https://dummyjson.com/posts/' + id)
                     .then((json)=>{return json.json()})
                     .then((data)=>{
-                        let postDialog = document.querySelector('#postDialog');
+                       
                         document.querySelector('.dialog_content h3').innerHTML = data.title;
                         document.querySelector('.dialog_content p').innerHTML = data.body;
+                        postDialog.showModal();
                     })
                 }
             }
