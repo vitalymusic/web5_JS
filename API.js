@@ -5,33 +5,42 @@ let loadPostBtn = document.querySelector('.loadPostBtn');
 let postsDiv = document.querySelector('.posts');
 
 
-loadPostBtn.onclick = ()=>{
+loadPostBtn.onclick = () => {
     fetch('https://dummyjson.com/posts')
-        .then((json)=>{return json.json()})
-        .then((data)=>{
-            let html="";
-            data["posts"].forEach((item)=>{
-              html +=`
+        .then((json) => { return json.json() })
+        .then((data) => {
+            let html = "";
+            data["posts"].forEach((item) => {
+                html += `
                     <div class="post">
                         <h3>${item.title}</h3>
                         <p>${item.body}</p>
-                        <button class="openPostBtn" data-postId="${item.id}">Lasīt vairāk</button>
+                        <button class="openPostBtn" data-postid="${item.id}">Lasīt vairāk</button>
                     </div>
-               `; 
+               `;
             })
             postsDiv.innerHTML = html;
         })
-        .then(()=>{
-            document.querySelectorAll('.openPostBtn').onclick = (e)=>{
-                let id = e.target.dataset.postId;
-                 fetch('https://dummyjson.com/posts/'+id)    
-
+        .then(() => {
+            for (button of document.querySelectorAll('.openPostBtn')) {
+                button.onclick = (e) => {
+                    let id = e.target.dataset.postid;
+                    fetch('https://dummyjson.com/posts/' + id)
+                    .then((json)=>{return json.json()})
+                    .then((data)=>{
+                        let postDialog = document.querySelector('#postDialog');
+                        document.querySelector('.dialog_content h3').innerHTML = data.title;
+                        document.querySelector('.dialog_content p').innerHTML = data.body;
+                    })
+                }
             }
+
+
         })
-        .finally(()=>{
+        .finally(() => {
             console.log("Dati ielādēti!!!");
         })
-    ;
+        ;
 
 
 }
