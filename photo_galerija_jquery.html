@@ -11,9 +11,11 @@
           display: grid;
           grid-template-columns: 1fr 1fr 1fr 1fr;
           justify-content: center;
+          align-items: center;
           gap:20px;    
             img{
-              height: 100%;
+              max-width: 100%;
+              height: auto;
             }
         }
     </style>
@@ -42,9 +44,9 @@
         $(document).ready(()=>{
             $('button').click(()=>{
               let search = $('input').val();
-              let html;
+              let html="";
               $.ajax({
-                  url:`https://api.pexels.com/v1/search?query=${search}`,
+                  url:`https://api.pexels.com/v1/search?query=${search}&orientation=landscape`,
                   method:"GET",
                   headers:{
                     Authorization:key
@@ -54,9 +56,16 @@
                       $.each(data.photos,(i,image)=>{
                             html+=`<img src="${image.src.medium}" alt="${image.alt}" data-autors="${image.photographer}">` 
                       })
-                      $('.photos').append(`html`);
+                      $('.photos').html(html);
                   }
+                  
               })
+                .done(()=>{
+                    $('.photos img').click((e)=>{
+                      console.log(e.target);
+                      
+                    })
+                  })
 
 
             })  
