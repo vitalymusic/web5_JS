@@ -42,6 +42,7 @@
         $(document).ready(()=>{
             $('button').click(()=>{
               let search = $('input').val();
+              let html;
               $.ajax({
                   url:`https://api.pexels.com/v1/search?query=${search}`,
                   method:"GET",
@@ -49,7 +50,11 @@
                     Authorization:key
                   },
                   success:(data)=>{
-                      console.log(JSON.parse(data))
+                      console.log(data.photos);
+                      $.each(data.photos,(i,image)=>{
+                            html+=`<img src="${image.src.medium}" alt="${image.alt}" data-autors="${image.photographer}">` 
+                      })
+                      $('.photos').append(`html`);
                   }
               })
 
@@ -58,7 +63,7 @@
 
 
 
-
+            // 
 
 
 
