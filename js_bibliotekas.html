@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bibliotēkas</h1>
+    <input type="text" name="" id="">
+    <button>Set image Src</button>
+    <img src="" alt="" >
+
+
+    <script>
+        // jquery-Code
+        $(document).ready(()=>{
+            $('body').append(`
+                <div class="block">
+                   <h3>Šis teksts ir pievienots ar Jquery</h3>     
+                </div>    
+            `);
+
+            $('.block').click((e)=>{
+                $(e.target).css({
+                    color:"red",
+                    border:"2px solid red",
+                    padding:"20px"
+                })
+            })
+            $('.block').dblclick((e)=>{
+                $(e.target).css({
+                    color:"green",
+                    border:"2px solid green"
+                })
+            })
+
+            $('body').on("keyup",(e)=>{
+                // console.log(e);
+
+                if(e.key=="Escape"){
+                    $('.block').fadeToggle();
+                }
+            })
+
+            $('img').hide();
+            $('button').click(()=>{
+                $('img').attr("src",$('input').val());
+                $('img').fadeIn();
+            })
+
+
+
+
+
+
+
+
+        })
+
+
+
+    </script>
+
+</body>
+</html>
