@@ -124,13 +124,109 @@
       margin: 0;
       padding: 0;
     }
+
+    /* Pamatkonteiners */
+    .search-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+    /* Input un Select kopīgais stils */
+    .search-form input,
+    .search-form select {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+    }
+
+    /* Input platums */
+    .search-form input {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    /* Select minimālais platums */
+    .search-form select {
+      min-width: 140px;
+      cursor: pointer;
+    }
+
+    /* Focus efekts */
+    .search-form input:focus,
+    .search-form select:focus {
+      border-color: #3b82f6;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Poga */
+    .search-form button {
+      padding: 12px 22px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    /* Hover efekts */
+    .search-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Active klikšķa efekts */
+    .search-form button:active {
+      transform: scale(0.97);
+    }
+
+    /* Mobilais skats */
+    @media (max-width: 600px) {
+      .search-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-form button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
 <body>
-
-  <input type="text" name="" id="" placeholder="ievadi meklējamo vārdu">
-  <button>Meklēt</button>
+  <div class="search-form">
+    <input type="text" name="" id="" placeholder="ievadi meklējamo vārdu">
+    <select name="photo_type" id="">
+      <option value="landscape">Horizontālās</option>
+      <option value="portrait">Vertikālās</option>
+      <option value="square">Kvadrāts</option>
+    </select>
+    <select name="quantity" id="">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="40">40</option>
+      <option value="80">80</option>
+    </select>
+    <button>Meklēt</button>
+  </div>
 
 
   <div class="photos"></div>
@@ -146,24 +242,29 @@
 
 
   <div class="jcarousel-wrapper">
-                <div class="jcarousel" data-jcarousel="true">
-                    <ul style="left: -1200px; top: 0px;">
-                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
-                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
-                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
-                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
-                    </ul>
-                </div>
+    <div class="jcarousel" data-jcarousel="true">
+      <ul style="left: -1200px; top: 0px;">
+        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt="">
+        </li>
+        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt="">
+        </li>
+        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt="">
+        </li>
+        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt="">
+        </li>
+      </ul>
+    </div>
 
-                <p class="photo-credits">
-                    Photos by <a href="http://www.mw-fotografie.de">Marc Wiegelmann</a>
-                </p>
+    <p class="photo-credits">
+      Photos by <a href="http://www.mw-fotografie.de">Marc Wiegelmann</a>
+    </p>
 
-                <a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true">‹</a>
-                <a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true">›</a>
-                
-                <p class="jcarousel-pagination" data-jcarouselpagination="true"><a href="#1">1</a><a href="#2">2</a><a href="#3" class="active">3</a><a href="#4">4</a><a href="#5">5</a><a href="#6">6</a></p>
-            </div>
+    <a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true">‹</a>
+    <a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true">›</a>
+
+    <p class="jcarousel-pagination" data-jcarouselpagination="true"><a href="#1">1</a><a href="#2">2</a><a href="#3"
+        class="active">3</a><a href="#4">4</a><a href="#5">5</a><a href="#6">6</a></p>
+  </div>
 
   <script>
     const key = "exaM4WddpeCHbumfoRf61GLq1qJnHUP110KINxjn3FdgitUTOX2xniiB";
@@ -179,9 +280,11 @@
     $(document).ready(() => {
       $('button').click(() => {
         let search = $('input').val();
+        let quantity = $('select[name="quantity"]').val();
+        let orientation = $('select[name="photo_type"]').val();
         let html = "";
         $.ajax({
-          url: `https://api.pexels.com/v1/search?query=${search}&orientation=landscape`,
+          url: `https://api.pexels.com/v1/search?query=${search}&orientation=${orientation}&per_page=${quantity}`,
           method: "GET",
           headers: {
             Authorization: key
