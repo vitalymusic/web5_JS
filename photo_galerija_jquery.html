@@ -1,29 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js" integrity="sha512-ztxZscxb55lKL+xmWGZEbBHekIzy+1qYKHGZTWZYH1GUwxy0hiA18lW6ORIMj4DHRgvmP/qGcvqwEyFFV7OYVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.css" integrity="sha512-JP49dvydjvdq6qd31grbdqIeExUyLFFIIneoetY/cJ+eQeJ6ok5HhaM4kQfIeQV4maAMGQ5kf4In3T7VKwMufg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"
+    integrity="sha512-ztxZscxb55lKL+xmWGZEbBHekIzy+1qYKHGZTWZYH1GUwxy0hiA18lW6ORIMj4DHRgvmP/qGcvqwEyFFV7OYVQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.css"
+    integrity="sha512-JP49dvydjvdq6qd31grbdqIeExUyLFFIIneoetY/cJ+eQeJ6ok5HhaM4kQfIeQV4maAMGQ5kf4In3T7VKwMufg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <title>Document</title>
+  <title>Document</title>
 
-    <style>
-        .photos{
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-          justify-content: center;
-          align-items: center;
-          gap:20px;    
-            img{
-              max-width: 100%;
-              height: auto;
-            }
-        }
-    </style>
+  <style>
+    .photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      border: 3px solid;
+      border-color: #FFF #FFF transparent transparent;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    .loader::after,
+    .loader::before {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 3px solid;
+      border-color: transparent transparent #FF3D00 #FF3D00;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      animation: rotationBack 0.5s linear infinite;
+      transform-origin: center center;
+    }
+
+    .loader::before {
+      width: 32px;
+      height: 32px;
+      border-color: #FFF #FFF transparent transparent;
+      animation: rotation 1.5s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotationBack {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <input type="text" name="" id="" placeholder="ievadi meklējamo vārdu">
@@ -32,58 +101,78 @@
 
   <div class="photos"></div>
 
-    
 
-    <script>
-        const key = "exaM4WddpeCHbumfoRf61GLq1qJnHUP110KINxjn3FdgitUTOX2xniiB";
+  <div class="modal">
+    <img src="" alt="" style="max-width: 100%;">
+    <h3 style="text-align: center"></h3>
 
-
-// Izmantojot Pexels uztaisīt 
-// 1. Formu, kurā var rakstīt atslēgas vārdus foto meklēšanai
-//  2.Uzrakstīt bilžu izvadi kā GRID lai klikšķinot uz bildes var ieraudzīt tās autoru. 
-// 3. Dialogs, kurā parādās uzklikšķināta bilde pilnā izmērā 
+  </div>
 
 
 
-        $(document).ready(()=>{
-            $('button').click(()=>{
-              let search = $('input').val();
-              let html="";
-              $.ajax({
-                  url:`https://api.pexels.com/v1/search?query=${search}&orientation=landscape`,
-                  method:"GET",
-                  headers:{
-                    Authorization:key
-                  },
-                  success:(data)=>{
-                      console.log(data.photos);
-                      $.each(data.photos,(i,image)=>{
-                            html+=`<img src="${image.src.medium}" alt="${image.alt}" data-autors="${image.photographer}">` 
-                      })
-                      $('.photos').html(html);
-                  }
-                  
-              })
-                .done(()=>{
-                    $('.photos img').click((e)=>{
-                      console.log(e.target);
-
-                    })
-                  })
+  <script>
+    const key = "exaM4WddpeCHbumfoRf61GLq1qJnHUP110KINxjn3FdgitUTOX2xniiB";
 
 
-            })  
+    // Izmantojot Pexels uztaisīt 
+    // 1. Formu, kurā var rakstīt atslēgas vārdus foto meklēšanai
+    //  2.Uzrakstīt bilžu izvadi kā GRID lai klikšķinot uz bildes var ieraudzīt tās autoru. 
+    // 3. Dialogs, kurā parādās uzklikšķināta bilde pilnā izmērā 
 
 
 
-            // 
-
-
-
-
+    $(document).ready(() => {
+      $('button').click(() => {
+        let search = $('input').val();
+        let html = "";
+        $.ajax({
+          url: `https://api.pexels.com/v1/search?query=${search}&orientation=landscape`,
+          method: "GET",
+          headers: {
+            Authorization: key
+          },
+          beforeSend: () => {
+            $('.photos').html(`
+                      <span class="loader"></span>
+                    `);
+          },
+          success: (data) => {
+            console.log(data.photos);
+            $.each(data.photos, (i, image) => {
+              html += `<img src="${image.src.medium}" alt="${image.alt}" data-autors="${image.photographer}">`
+            })
+            $('.photos').html(html);
+          }
 
         })
+          .done(() => {
+            $('.photos img').click((e) => {
+              console.log(e.target);
+              $('.modal img').attr({
+                src: $(e.target).attr("src"),
+                alt: $(e.target).attr("alt")
+              });
+              $('.modal h3').text($(e.target).attr("data-autors"))
+              $('.modal').modal({
+                fadeDuration: 250
+              });
+            })
+          })
 
-    </script>
+
+      })
+
+
+
+      // 
+
+
+
+
+
+    })
+
+  </script>
 </body>
+
 </html>
