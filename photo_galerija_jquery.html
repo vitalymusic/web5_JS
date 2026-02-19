@@ -15,6 +15,20 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
+  <!-- karuselis -->
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel.min.js"
+    integrity="sha512-5TU8T3STShZiLsdqDqiKnj0Z72ccPZpIDCuItxc2S7G3lyiwqiuLuDFVNsLQ7Hgu5f33DlZ2KAJspbn6NAXqnA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://sorgalla.com/jcarousel/examples/basic/jcarousel.basic.js">
+
+  </script>
+
+  <link rel="stylesheet" href="https://sorgalla.com/jcarousel/examples/basic/jcarousel.basic.css">
+
+
+
   <title>Document</title>
 
   <style>
@@ -90,6 +104,26 @@
         transform: rotate(-360deg);
       }
     }
+
+
+
+
+    /* Karuselis css */
+
+    .jcarousel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .jcarousel div {
+      width: 10000em;
+      position: relative;
+
+      /* Optional, required in this case since it's a <ul> element */
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
   </style>
 </head>
 
@@ -108,7 +142,28 @@
 
   </div>
 
+  <h3>Karuselis</h3>
 
+
+  <div class="jcarousel-wrapper">
+                <div class="jcarousel" data-jcarousel="true">
+                    <ul style="left: -1200px; top: 0px;">
+                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
+                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
+                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
+                        <li><img src="https://sorgalla.com/jcarousel/examples/_shared/img/img1.jpg" width="600" height="400" alt=""></li>
+                    </ul>
+                </div>
+
+                <p class="photo-credits">
+                    Photos by <a href="http://www.mw-fotografie.de">Marc Wiegelmann</a>
+                </p>
+
+                <a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true">‹</a>
+                <a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true">›</a>
+                
+                <p class="jcarousel-pagination" data-jcarouselpagination="true"><a href="#1">1</a><a href="#2">2</a><a href="#3" class="active">3</a><a href="#4">4</a><a href="#5">5</a><a href="#6">6</a></p>
+            </div>
 
   <script>
     const key = "exaM4WddpeCHbumfoRf61GLq1qJnHUP110KINxjn3FdgitUTOX2xniiB";
@@ -164,8 +219,16 @@
 
 
 
-      // 
-
+      // Karuselis inicializācija
+      $('.jcarousel').jcarousel({
+        // Configuration goes here
+        list: 'ul',
+        items: 'li',
+        animation: 'slow',
+        // vertical: true,
+        center: true,
+        wrap: 'both'
+      });
 
 
 
